@@ -85,12 +85,12 @@ export default function navbar() {
             <div className="flex justify-between text-blue-400 gap-10">
                 <div className="flex gap-3">
                 <IoPersonOutline size={22} />
-                <span>  Login / Register</span>
+                <span className="cursor-pointer hover:text-blue-800 font-semibold">  Login / Register</span>
                 </div>
 
-                <div><IoSearchOutline/></div>
-                <div><BsCart2/></div>
-                <div><FiHeart/></div>
+                <div className="cursor-pointer hover:text-blue-800"><IoSearchOutline/></div>
+                <div className="cursor-pointer hover:text-blue-800"><BsCart2/></div>
+                <div className="cursor-pointer hover:text-blue-800"><FiHeart/></div>
             </div>
         </div>
     </div>

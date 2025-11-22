@@ -1,9 +1,18 @@
-import Image from "next/image";
+import ProductGallery from "../components/product/ProductGallery";
+import Breadcrumb from "../components/layout/breadcrumb"; 
 
 export default function Home() {
+  const breadcrumbItems = [ 
+    { label: 'Home', href: '/', active: true },
+    { label: 'Shop', active: false }
+  ];
+
   return (
     <div>
-      halo
+      <Breadcrumb items={breadcrumbItems} />
+      <div className="max-w-7xl mx-auto px-6 py-10">
+        <ProductGallery />
+      </div>
     </div>
   );
 }
