@@ -138,10 +138,6 @@ export default function Navbar() {
                 <span className="cursor-pointer hover:text-blue-800 font-semibold">Login / Register</span>
               </div>
               
-              {/* Mobile Additional Icons */}
-              <div className="flex gap-6 px-2 py-2 text-blue-400">
-                <div className="cursor-pointer hover:text-blue-800"><FiHeart size={20} /></div>
-              </div>
             </div>
           </div>
         )}
