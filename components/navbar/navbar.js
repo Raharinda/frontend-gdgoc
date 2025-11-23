@@ -14,7 +14,7 @@ import { FiChevronDown } from "react-icons/fi";
 
 export default function navbar() {
   return (
-    <div className="">
+    <div className="sticky top-0 z-50 bg-white shadow-sm">
         {/*Top Bar*/}
         <div className="w-full bg-teal-700 text-white text-sm p-2">
         <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">

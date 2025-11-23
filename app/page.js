@@ -1,5 +1,6 @@
 import ProductGallery from "../components/product/ProductGallery";
-import Breadcrumb from "../components/layout/breadcrumb"; 
+import Breadcrumb from "../components/layout/breadcrumb";
+import BookSection from "../components/home/bookSection"
 
 export default function Home() {
   const breadcrumbItems = [ 
@@ -12,6 +13,7 @@ export default function Home() {
       <Breadcrumb items={breadcrumbItems} />
       <div className="max-w-7xl mx-auto px-6 py-10">
         <ProductGallery />
+        <BookSection/>
       </div>
     </div>
   );
