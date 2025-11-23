@@ -12,7 +12,8 @@ export default function ProductPage() {
   const [error, setError] = useState(null);
   const [mounted, setMounted] = useState(false);
 
-  // Fix hydration - wait for client mount
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1';
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -20,6 +21,7 @@ export default function ProductPage() {
   useEffect(() => {
     if (!mounted) return;
     fetchBooks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mounted]);
 
   const fetchBooks = async () => {
@@ -27,17 +29,23 @@ export default function ProductPage() {
     setError(null);
     try {
       const bookPromises = Array(5).fill(null).map(() => 
-        fetch('https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1/random_book')
+        fetch(`${API_BASE_URL}/random_book`)
           .then(async (r) => {
             if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            
+            const contentType = r.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+              throw new Error('Response is not JSON');
+            }
+            
             return r.json();
           })
       );
+      
       const booksData = await Promise.all(bookPromises);
       setBooks(booksData);
     } catch (err) {
       setError(err.message);
-      console.error('Fetch error:', err);
     } finally {
       setLoading(false);
     }
@@ -55,7 +63,6 @@ export default function ProductPage() {
     }
   };
 
-  // Show loading on initial mount
   if (!mounted || loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -70,6 +77,7 @@ export default function ProductPage() {
         <div className="text-center">
           <p className="text-red-600 mb-4">Error: {error}</p>
           <button
+            type="button"
             onClick={fetchBooks}
             className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
           >
@@ -86,6 +94,7 @@ export default function ProductPage() {
         <div className="text-center">
           <p className="text-gray-500 mb-4">No books found</p>
           <button
+            type="button"
             onClick={fetchBooks}
             className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
           >
@@ -137,9 +146,6 @@ export default function ProductPage() {
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
                     unoptimized
-                    onError={(e) => {
-                      console.error('Image load error');
-                    }}
                   />
                 </div>
               ) : (
