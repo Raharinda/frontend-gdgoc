@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Heart, ShoppingCart, Eye, ZoomIn } from 'lucide-react';
+import Image from 'next/image';
 
 export default function ProductPage() {
   const [books, setBooks] = useState([]);
@@ -106,7 +107,7 @@ export default function ProductPage() {
               </div>
 
               {carouselImages.length > 0 ? (
-                <image
+                <Image
                   src={carouselImages[currentImageIndex]}
                   alt={`Book ${currentImageIndex + 1}`}
                   className="w-full h-full object-cover"
