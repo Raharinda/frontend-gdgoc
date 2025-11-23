@@ -94,6 +94,7 @@ export default function Navbar() {
           <div className="flex lg:hidden items-center gap-4 text-blue-400">
             <div className="cursor-pointer hover:text-blue-800"><IoSearchOutline size={20} /></div>
             <div className="cursor-pointer hover:text-blue-800"><BsCart2 size={20} /></div>
+            <div className="cursor-pointer hover:text-blue-800"><FiHeart size={20} /></div>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="cursor-pointer hover:text-blue-800"
