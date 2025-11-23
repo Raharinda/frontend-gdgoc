@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ChevronLeft, ChevronRight, Heart, ShoppingCart, Eye, ZoomIn } from 'lucide-react';
 
 export default function ProductPage() {
@@ -73,29 +74,18 @@ export default function ProductPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
+      {/* Header - Breadcrumb */}
       <div className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center text-sm text-gray-600 gap-2">
-          <a href="/" className="text-gray-900 font-medium hover:text-gray-900 no-underline">
+          <Link 
+            href="/" 
+            className="text-gray-900 font-medium hover:text-gray-700 no-underline"
+          >
             Home
-          </a>
+          </Link>
           <ChevronRight size={16} />
           <span className="text-gray-400">Shop</span>
         </div>
-      </div>
-
-      {/* Debug Info - Hapus setelah testing */}
-      <div className="max-w-7xl mx-auto px-6 py-4 bg-yellow-100 border border-yellow-400 rounded my-4">
-        <h3 className="font-bold mb-2">🔍 Debug Info:</h3>
-        <p>Total books: {books.length}</p>
-        <p>Valid images: {carouselImages.length}</p>
-        <p>Current index: {currentImageIndex}</p>
-        <details className="mt-2">
-          <summary className="cursor-pointer font-semibold">Show Current Book Data</summary>
-          <pre className="bg-white p-4 rounded mt-2 overflow-auto text-xs max-h-96">
-            {JSON.stringify(currentBook, null, 2)}
-          </pre>
-        </details>
       </div>
 
       {/* Main Content */}
@@ -115,11 +105,12 @@ export default function ProductPage() {
                 <div className="relative w-full h-full">
                   <Image
                     src={carouselImages[currentImageIndex]}
-                    alt={`Book ${currentImageIndex + 1}`}
+                    alt={currentBook.title || `Book ${currentImageIndex + 1}`}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
                     unoptimized
+                    priority
                     onError={(e) => {
                       console.error('Image load error');
                       console.log('Failed URL:', carouselImages[currentImageIndex]);
@@ -131,7 +122,6 @@ export default function ProductPage() {
                   <div className="text-center">
                     <p className="text-6xl mb-4">📚</p>
                     <p>No Image Available</p>
-                    <p className="text-xs mt-2">Images count: {carouselImages.length}</p>
                   </div>
                 </div>
               )}
@@ -141,12 +131,14 @@ export default function ProductPage() {
                 <>
                   <button
                     onClick={prevImage}
+                    aria-label="Previous image"
                     className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm hover:bg-white/20 p-4 rounded-full transition-all z-10"
                   >
                     <ChevronLeft size={32} className="text-white" strokeWidth={3} />
                   </button>
                   <button
                     onClick={nextImage}
+                    aria-label="Next image"
                     className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm hover:bg-white/20 p-4 rounded-full transition-all z-10"
                   >
                     <ChevronRight size={32} className="text-white" strokeWidth={3} />
@@ -156,10 +148,29 @@ export default function ProductPage() {
 
               {/* Zoom Icon */}
               <div className="absolute bottom-6 left-6 z-10">
-                <div className="bg-white rounded-full p-2 cursor-pointer hover:bg-gray-100 transition-colors">
+                <button 
+                  className="bg-white rounded-full p-2 cursor-pointer hover:bg-gray-100 transition-colors"
+                  aria-label="Zoom image"
+                >
                   <ZoomIn size={20} className="text-gray-700" />
-                </div>
+                </button>
               </div>
+
+              {/* Image Indicators */}
+              {carouselImages.length > 1 && (
+                <div className="absolute bottom-6 right-6 flex gap-2 z-10">
+                  {carouselImages.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentImageIndex(idx)}
+                      aria-label={`Go to image ${idx + 1}`}
+                      className={`h-2 rounded-full transition-all ${
+                        idx === currentImageIndex ? 'bg-white w-6' : 'bg-white/50 w-2'
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
@@ -169,17 +180,22 @@ export default function ProductPage() {
             <div className="flex gap-2 flex-wrap">
               {currentBook.tags && currentBook.tags.length > 0 ? (
                 currentBook.tags.slice(0, 2).map((tag, idx) => (
-                  <span key={idx} className="bg-blue-600 text-white text-sm px-4 py-1.5 rounded">
+                  <span 
+                    key={idx} 
+                    className={`text-sm px-4 py-1.5 rounded ${
+                      idx === 0 ? 'bg-blue-600 text-white' : 'bg-gray-800 text-white'
+                    }`}
+                  >
                     {typeof tag === 'object' ? tag.name : tag}
                   </span>
                 ))
               ) : (
                 <>
                   <span className="bg-blue-600 text-white text-sm px-4 py-1.5 rounded">
-                    Self Improvement
+                    Books
                   </span>
                   <span className="bg-gray-800 text-white text-sm px-4 py-1.5 rounded">
-                    Technology
+                    Featured
                   </span>
                 </>
               )}
@@ -187,12 +203,12 @@ export default function ProductPage() {
 
             {/* Title */}
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-              {currentBook.title || 'Beyond the Stars'}
+              {currentBook.title || 'Book Title'}
             </h1>
 
             {/* Price */}
             <div className="text-3xl font-bold text-gray-900">
-              {currentBook.price ? `$${currentBook.price}` : '$1,139.33'}
+              {currentBook.details?.price || currentBook.price || 'Price not available'}
             </div>
 
             {/* Availability */}
@@ -203,47 +219,74 @@ export default function ProductPage() {
 
             {/* Description */}
             <p className="text-gray-600 leading-relaxed">
-              {currentBook.description || currentBook.summary || 'Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.'}
+              {currentBook.summary || currentBook.description || 'No description available.'}
             </p>
 
             {/* Book Details */}
             <div className="space-y-2 text-sm">
-              <div className="flex">
-                <span className="text-gray-600 font-medium w-28">Pages:</span>
-                <span className="text-gray-900">{currentBook.pages || '328'}</span>
-              </div>
-              <div className="flex">
-                <span className="text-gray-600 font-medium w-28">Publisher:</span>
-                <span className="text-gray-900">{currentBook.publisher || 'Noir House Books'}</span>
-              </div>
-              <div className="flex">
-                <span className="text-gray-600 font-medium w-28">ISBN:</span>
-                <span className="text-gray-900">{currentBook.isbn || '978-1-234567-90-6'}</span>
-              </div>
-              <div className="flex">
-                <span className="text-gray-600 font-medium w-28">Published:</span>
-                <span className="text-gray-900">{currentBook.publication_date || 'January 20, 2024'}</span>
-              </div>
-              {currentBook.authors && currentBook.authors.length > 0 && (
+              {currentBook.details?.total_pages && (
+                <div className="flex">
+                  <span className="text-gray-600 font-medium w-28">Pages:</span>
+                  <span className="text-gray-900">{currentBook.details.total_pages}</span>
+                </div>
+              )}
+              {currentBook.publisher && (
+                <div className="flex">
+                  <span className="text-gray-600 font-medium w-28">Publisher:</span>
+                  <span className="text-gray-900">{currentBook.publisher}</span>
+                </div>
+              )}
+              {currentBook.details?.isbn && (
+                <div className="flex">
+                  <span className="text-gray-600 font-medium w-28">ISBN:</span>
+                  <span className="text-gray-900">{currentBook.details.isbn}</span>
+                </div>
+              )}
+              {currentBook.details?.published_date && (
+                <div className="flex">
+                  <span className="text-gray-600 font-medium w-28">Published:</span>
+                  <span className="text-gray-900">{currentBook.details.published_date}</span>
+                </div>
+              )}
+              {currentBook.author?.name && (
                 <div className="flex">
                   <span className="text-gray-600 font-medium w-28">Author:</span>
-                  <span className="text-gray-900">{currentBook.authors.join(', ')}</span>
+                  <span className="text-gray-900">{currentBook.author.name}</span>
                 </div>
               )}
             </div>
 
             {/* Action Buttons */}
             <div className="flex gap-3 pt-4">
-              <button className="flex-1 bg-blue-600 text-white px-8 py-3.5 rounded-lg hover:bg-blue-700 transition-colors font-medium text-base">
+              <button 
+                className="flex-1 bg-blue-600 text-white px-8 py-3.5 rounded-lg hover:bg-blue-700 transition-colors font-medium text-base"
+                onClick={() => {
+                  if (currentBook.buy_links) {
+                    const link = Array.isArray(currentBook.buy_links) 
+                      ? currentBook.buy_links[0] 
+                      : currentBook.buy_links;
+                    window.open(typeof link === 'object' ? link.url : link, '_blank');
+                  }
+                }}
+              >
                 Buy Now
               </button>
-              <button className="p-3.5 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+              <button 
+                className="p-3.5 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                aria-label="Add to wishlist"
+              >
                 <Heart size={24} className="text-gray-700" />
               </button>
-              <button className="p-3.5 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+              <button 
+                className="p-3.5 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                aria-label="Add to cart"
+              >
                 <ShoppingCart size={24} className="text-gray-700" />
               </button>
-              <button className="p-3.5 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+              <button 
+                className="p-3.5 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                aria-label="Quick view"
+              >
                 <Eye size={24} className="text-gray-700" />
               </button>
             </div>

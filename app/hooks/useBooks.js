@@ -1,40 +1,58 @@
-'use client';
 import { useState, useEffect, useCallback } from 'react';
 
-export const useBooks = (count = 5) => {
+export function useBooks(count = 5) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1';
+
   const fetchBooks = useCallback(async () => {
     setLoading(true);
     setError(null);
+
     try {
-      const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-      
-      const bookPromises = Array(count).fill(null).map(() => 
-        fetch(`${apiBaseUrl}/random_book`)
-          .then(r => r.json())
+      const promises = Array(count).fill(null).map((_, index) =>
+        fetch(`${API_BASE_URL}/random_book`)
+          .then(async (response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP ${response.status}`);
+            }
+
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+              throw new Error('Response is not JSON');
+            }
+
+            return response.json();
+          })
       );
-      const booksData = await Promise.all(bookPromises);
+
+      const data = await Promise.all(promises);
       
-      // Tambahkan unique identifier untuk setiap buku agar key tetap unik
-      const booksWithUniqueId = booksData.map((book, index) => ({
+      // Add unique key untuk setiap buku
+      const booksWithKeys = data.map((book, index) => ({
         ...book,
         _uniqueKey: `${book._id}-${index}-${Date.now()}`
       }));
-      
-      setBooks(booksWithUniqueId);
+
+      setBooks(booksWithKeys);
     } catch (err) {
+      console.error('Fetch error:', err);
       setError(err.message);
     } finally {
       setLoading(false);
     }
-  }, [count]);
+  }, [count, API_BASE_URL]);
 
   useEffect(() => {
     fetchBooks();
   }, [fetchBooks]);
 
-  return { books, loading, error, refetch: fetchBooks };
-};
+  return {
+    books,
+    loading,
+    error,
+    refetch: fetchBooks
+  };
+}
