@@ -17,9 +17,9 @@ export default function ProductPage() {
     setLoading(true);
     setError(null);
     try {
-      const bookPromises = Array(5).fill(null).map(() =>
-        fetch('https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1/random_book')
-          .then(r => r.json())
+      // Fetch 5 random books untuk carousel
+      const bookPromises = Array(5).fill(null).map(() => 
+        fetch('https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1/random_book').then(r => r.json())
       );
       const booksData = await Promise.all(bookPromises);
       setBooks(booksData);
@@ -31,11 +31,11 @@ export default function ProductPage() {
   };
 
   const nextImage = () => {
-    setCurrentImageIndex(prev => (prev + 1) % books.length);
+    setCurrentImageIndex((prev) => (prev + 1) % books.length);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex(prev => (prev - 1 + books.length) % books.length);
+    setCurrentImageIndex((prev) => (prev - 1 + books.length) % books.length);
   };
 
   if (loading) {
@@ -106,7 +106,7 @@ export default function ProductPage() {
               </div>
 
               {carouselImages.length > 0 ? (
-                <img
+                <image
                   src={carouselImages[currentImageIndex]}
                   alt={`Book ${currentImageIndex + 1}`}
                   className="w-full h-full object-cover"
