@@ -8,7 +8,7 @@ export default function Breadcrumb({ items = [] }) {
   }
 
   return (
-    <div className="bg-white border-b border-gray-200 px-57 py-10 justify-between">
+    <div className="bg-white border-b border-gray-200 py-7 px-57 justify-between">
       <div className="max-w-7xl mx-auto flex items-center text-sm text-gray-600 gap-2">
         {items.map((item, index) => (
           <div key={index} className="flex items-center gap-2">

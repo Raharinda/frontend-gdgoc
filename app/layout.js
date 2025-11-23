@@ -21,10 +21,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className="">
+        <header className="sticky top-0 z-50">
         <Navbar />
+        </header>
         <Breadcumb />
         {children}
+
       </body>
     </html>
   );
