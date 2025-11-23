@@ -94,7 +94,7 @@ export default function BookCard({ book, onClick }) {
         {/* Price */}
         <div className="pt-2">
           {price ? (
-            <span className="text-lg font-bold text-blue-600">
+            <span className="text-lg font-bold text-teal-700">
               {price}
             </span>
           ) : (
