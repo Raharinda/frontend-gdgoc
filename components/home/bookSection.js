@@ -8,13 +8,14 @@ export default function BookSection() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
   useEffect(() => {
     async function fetchBooks() {
       try {
-        // Fetch 8 random books
+        // Fetch hanya 8 buku
         const promises = Array(8).fill(null).map(() =>
-          fetch('https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1/random_book')
-            .then(r => r.json())
+          fetch(`${API_BASE_URL}/random_book`).then(r => r.json())
         );
         const data = await Promise.all(promises);
         setBooks(data);
@@ -37,10 +38,10 @@ export default function BookSection() {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
-      <h2 className="text-3xl font-bold text-gray-900 mb-8 shadow-[0_3px_0_rgba(0,0,0,0.12)]">Books For You</h2>
+      <h2 className="text-3xl font-bold text-gray-900 mb-10 p-4 shadow-[0_2px_0_rgba(0,0,0,0.12)]">Books For You</h2>
       
-      {/* Grid 4 columns, 2 rows */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-20">
+      {/* Grid 4 kolom x 2 baris = 8 buku */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {books.map((book, index) => (
           <BookCard key={book._id || index} book={book} />
         ))}

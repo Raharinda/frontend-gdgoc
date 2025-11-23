@@ -97,7 +97,7 @@ export default function ProductPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Side - Gallery */}
           <div>
-            <div className="relative bg-gray-200 rounded-lg overflow-hidden aspect-[3/4]">
+            <div className="relative bg-gray-200 rounded-lg overflow-hidden aspect-3/4">
               {/* Badge */}
               <div className="absolute top-4 left-4 z-10">
                 <span className="bg-blue-600 text-white text-xs px-3 py-1 rounded">
@@ -106,7 +106,7 @@ export default function ProductPage() {
               </div>
 
               {carouselImages.length > 0 ? (
-                <img
+                <image
                   src={carouselImages[currentImageIndex]}
                   alt={`Book ${currentImageIndex + 1}`}
                   className="w-full h-full object-cover"

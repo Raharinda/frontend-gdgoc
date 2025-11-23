@@ -26,7 +26,7 @@ export const useBooks = (count = 5) => {
 
   useEffect(() => {
     fetchBooks();
-  }, []);
+  },);
 
   return { books, loading, error, refetch: fetchBooks };
 };

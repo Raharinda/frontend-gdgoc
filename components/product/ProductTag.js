@@ -1,18 +1,33 @@
-export default function ProductTag({ tags = [], category = null }) {
-  return (
-    <div className="flex flex-wrap gap-2">
-      {category && (
-        <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">
-          {category.name}
-        </span>
-      )}
+'use client';
 
-      {tags.map((tag, i) => (
+export default function ProductTag({ tags = [], category }) {
+  const getTagName = (tag) => {
+    if (typeof tag === 'object' && tag.name) {
+      return tag.name;
+    }
+    return tag;
+  };
+
+  const displayTags = tags && tags.length > 0 
+    ? tags.slice(0, 3).map(getTagName) 
+    : category 
+    ? [category.name || category] 
+    : [];
+
+  if (displayTags.length === 0) return null;
+
+  return (
+    <div className="flex gap-2 flex-wrap">
+      {displayTags.map((tag, index) => (
         <span
-          key={i}
-          className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+          key={index}
+          className={`text-sm px-4 py-1.5 rounded ${
+            index === 0 
+              ? 'bg-blue-600 text-white' 
+              : 'bg-gray-800 text-white'
+          }`}
         >
-          {tag.name}
+          {tag}
         </span>
       ))}
     </div>
