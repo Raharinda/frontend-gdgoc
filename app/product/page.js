@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Heart, ShoppingCart, Eye, ZoomIn } from 'lucide-react';
 import Image from 'next/image';
+import { ChevronLeft, ChevronRight, Heart, ShoppingCart, Eye, ZoomIn } from 'lucide-react';
 
 export default function ProductPage() {
   const [books, setBooks] = useState([]);
@@ -20,12 +20,17 @@ export default function ProductPage() {
     try {
       // Fetch 5 random books untuk carousel
       const bookPromises = Array(5).fill(null).map(() => 
-        fetch('https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1/random_book').then(r => r.json())
+        fetch('https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1/random_book')
+          .then(async (r) => {
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            return r.json();
+          })
       );
       const booksData = await Promise.all(bookPromises);
       setBooks(booksData);
     } catch (err) {
       setError(err.message);
+      console.error('Fetch error:', err);
     } finally {
       setLoading(false);
     }
@@ -71,7 +76,7 @@ export default function ProductPage() {
       {/* Header */}
       <div className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center text-sm text-gray-600 gap-2">
-          <a href="#" className="text-gray-900 font-medium hover:text-gray-900 no-underline">
+          <a href="/" className="text-gray-900 font-medium hover:text-gray-900 no-underline">
             Home
           </a>
           <ChevronRight size={16} />
@@ -79,7 +84,7 @@ export default function ProductPage() {
         </div>
       </div>
 
-      {/* Debug Info */}
+      {/* Debug Info - Hapus setelah testing */}
       <div className="max-w-7xl mx-auto px-6 py-4 bg-yellow-100 border border-yellow-400 rounded my-4">
         <h3 className="font-bold mb-2">🔍 Debug Info:</h3>
         <p>Total books: {books.length}</p>
@@ -98,24 +103,29 @@ export default function ProductPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Side - Gallery */}
           <div>
-            <div className="relative bg-gray-200 rounded-lg overflow-hidden aspect-3/4">
+            <div className="relative bg-gray-200 rounded-lg overflow-hidden aspect-[3/4]">
               {/* Badge */}
               <div className="absolute top-4 left-4 z-10">
                 <span className="bg-blue-600 text-white text-xs px-3 py-1 rounded">
-                  1440 x 92 Hug
+                  Featured
                 </span>
               </div>
 
               {carouselImages.length > 0 ? (
-                <Image
-                  src={carouselImages[currentImageIndex]}
-                  alt={`Book ${currentImageIndex + 1}`}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    console.error('Image load error:', e);
-                    console.log('Failed image URL:', carouselImages[currentImageIndex]);
-                  }}
-                />
+                <div className="relative w-full h-full">
+                  <Image
+                    src={carouselImages[currentImageIndex]}
+                    alt={`Book ${currentImageIndex + 1}`}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                    unoptimized
+                    onError={(e) => {
+                      console.error('Image load error');
+                      console.log('Failed URL:', carouselImages[currentImageIndex]);
+                    }}
+                  />
+                </div>
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-gray-400">
                   <div className="text-center">
@@ -131,13 +141,13 @@ export default function ProductPage() {
                 <>
                   <button
                     onClick={prevImage}
-                    className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm hover:bg-white/20 p-4 rounded-full transition-all"
+                    className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm hover:bg-white/20 p-4 rounded-full transition-all z-10"
                   >
                     <ChevronLeft size={32} className="text-white" strokeWidth={3} />
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm hover:bg-white/20 p-4 rounded-full transition-all"
+                    className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm hover:bg-white/20 p-4 rounded-full transition-all z-10"
                   >
                     <ChevronRight size={32} className="text-white" strokeWidth={3} />
                   </button>
@@ -145,7 +155,7 @@ export default function ProductPage() {
               )}
 
               {/* Zoom Icon */}
-              <div className="absolute bottom-6 left-6">
+              <div className="absolute bottom-6 left-6 z-10">
                 <div className="bg-white rounded-full p-2 cursor-pointer hover:bg-gray-100 transition-colors">
                   <ZoomIn size={20} className="text-gray-700" />
                 </div>
@@ -157,12 +167,22 @@ export default function ProductPage() {
           <div className="space-y-6">
             {/* Category Tags */}
             <div className="flex gap-2 flex-wrap">
-              <span className="bg-blue-600 text-white text-sm px-4 py-1.5 rounded">
-                Self Improvement
-              </span>
-              <span className="bg-gray-800 text-white text-sm px-4 py-1.5 rounded">
-                Technology
-              </span>
+              {currentBook.tags && currentBook.tags.length > 0 ? (
+                currentBook.tags.slice(0, 2).map((tag, idx) => (
+                  <span key={idx} className="bg-blue-600 text-white text-sm px-4 py-1.5 rounded">
+                    {typeof tag === 'object' ? tag.name : tag}
+                  </span>
+                ))
+              ) : (
+                <>
+                  <span className="bg-blue-600 text-white text-sm px-4 py-1.5 rounded">
+                    Self Improvement
+                  </span>
+                  <span className="bg-gray-800 text-white text-sm px-4 py-1.5 rounded">
+                    Technology
+                  </span>
+                </>
+              )}
             </div>
 
             {/* Title */}
@@ -172,7 +192,7 @@ export default function ProductPage() {
 
             {/* Price */}
             <div className="text-3xl font-bold text-gray-900">
-              ${currentBook.price || '1,139.33'}
+              {currentBook.price ? `$${currentBook.price}` : '$1,139.33'}
             </div>
 
             {/* Availability */}
@@ -183,7 +203,7 @@ export default function ProductPage() {
 
             {/* Description */}
             <p className="text-gray-600 leading-relaxed">
-              {currentBook.description || 'Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.'}
+              {currentBook.description || currentBook.summary || 'Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.'}
             </p>
 
             {/* Book Details */}
