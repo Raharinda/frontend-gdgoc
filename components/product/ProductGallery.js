@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 import { useBooks } from '../../app/hooks/useBooks';
@@ -16,16 +16,17 @@ export default function ProductGallery({ singleBook = null }) {
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef(null);
 
-  const displayBooks = singleBook ? [singleBook] : books;
+  const displayBooks = useMemo(() => {
+    return singleBook ? [singleBook] : books;
+  }, [singleBook, books]);
+  
   const isRandomMode = !singleBook;
 
   // AUTOSLIDE
   useEffect(() => {
-    const carouselImages = displayBooks.map(book => book?.cover_image).filter(Boolean);
-    
-    if (!isPaused && carouselImages.length > 1) {
+    if (!isPaused && displayBooks.length > 1) {
       intervalRef.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
+        setCurrentIndex((prev) => (prev + 1) % displayBooks.length);
       }, 3000);
     }
 
@@ -34,7 +35,7 @@ export default function ProductGallery({ singleBook = null }) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isPaused, displayBooks]);
+  }, [isPaused, displayBooks.length]);
 
   const handleNext = () => {
     if (displayBooks.length > 0) {
@@ -84,7 +85,7 @@ export default function ProductGallery({ singleBook = null }) {
     );
   }
 
-  if (!displayBooks || displayBooks.length === 0) {
+  if ((!displayBooks || displayBooks.length === 0) && isRandomMode) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
         <div className="text-center text-gray-500">
@@ -98,6 +99,11 @@ export default function ProductGallery({ singleBook = null }) {
         </div>
       </div>
     );
+  }
+
+  // Jika singleBook mode dan tidak ada data, return null
+  if (!displayBooks || displayBooks.length === 0) {
+    return null;
   }
 
   const currentBook = displayBooks[currentIndex] || {};
@@ -177,7 +183,10 @@ export default function ProductGallery({ singleBook = null }) {
 
       {/* Right Side - Product Details */}
       <div className="space-y-6 p-5 min-h-[700px] max-h-[800px] overflow-y-auto pr-2">
-        <ProductTag tags={currentBook.tags} category={currentBook.category}/>
+        <ProductTag 
+          tags={currentBook.tags} 
+          category={currentBook.category}
+        />
         <ProductInfo book={currentBook} />
         <ProductSummary summary={currentBook.summary} />
         <ProductSpecs book={currentBook} />
