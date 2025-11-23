@@ -1,4 +1,3 @@
-// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -25,7 +24,17 @@ const nextConfig = {
         hostname: '**',
       },
     ],
+    // Tambahkan ini untuk fix preload warning
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  // Disable image optimization di development
+  ...(process.env.NODE_ENV === 'development' && {
+    experimental: {
+      optimizePackageImports: ['lucide-react'],
+    },
+  }),
 };
 
 export default nextConfig;

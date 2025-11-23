@@ -10,16 +10,22 @@ export default function ProductPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [mounted, setMounted] = useState(false);
+
+  // Fix hydration - wait for client mount
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
+    if (!mounted) return;
     fetchBooks();
-  }, []);
+  }, [mounted]);
 
   const fetchBooks = async () => {
     setLoading(true);
     setError(null);
     try {
-      // Fetch 5 random books untuk carousel
       const bookPromises = Array(5).fill(null).map(() => 
         fetch('https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1/random_book')
           .then(async (r) => {
@@ -38,14 +44,19 @@ export default function ProductPage() {
   };
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % books.length);
+    if (books.length > 0) {
+      setCurrentImageIndex((prev) => (prev + 1) % books.length);
+    }
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + books.length) % books.length);
+    if (books.length > 0) {
+      setCurrentImageIndex((prev) => (prev - 1 + books.length) % books.length);
+    }
   };
 
-  if (loading) {
+  // Show loading on initial mount
+  if (!mounted || loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
@@ -69,8 +80,24 @@ export default function ProductPage() {
     );
   }
 
+  if (books.length === 0) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="text-center">
+          <p className="text-gray-500 mb-4">No books found</p>
+          <button
+            onClick={fetchBooks}
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+          >
+            Reload
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   const currentBook = books[currentImageIndex] || {};
-  const carouselImages = books.map(book => book.cover_image).filter(Boolean);
+  const carouselImages = books.map(book => book?.cover_image).filter(Boolean);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -110,10 +137,8 @@ export default function ProductPage() {
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
                     unoptimized
-                    priority
                     onError={(e) => {
                       console.error('Image load error');
-                      console.log('Failed URL:', carouselImages[currentImageIndex]);
                     }}
                   />
                 </div>
@@ -131,6 +156,7 @@ export default function ProductPage() {
                 <>
                   <button
                     onClick={prevImage}
+                    type="button"
                     aria-label="Previous image"
                     className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm hover:bg-white/20 p-4 rounded-full transition-all z-10"
                   >
@@ -138,6 +164,7 @@ export default function ProductPage() {
                   </button>
                   <button
                     onClick={nextImage}
+                    type="button"
                     aria-label="Next image"
                     className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm hover:bg-white/20 p-4 rounded-full transition-all z-10"
                   >
@@ -149,6 +176,7 @@ export default function ProductPage() {
               {/* Zoom Icon */}
               <div className="absolute bottom-6 left-6 z-10">
                 <button 
+                  type="button"
                   className="bg-white rounded-full p-2 cursor-pointer hover:bg-gray-100 transition-colors"
                   aria-label="Zoom image"
                 >
@@ -162,6 +190,7 @@ export default function ProductPage() {
                   {carouselImages.map((_, idx) => (
                     <button
                       key={idx}
+                      type="button"
                       onClick={() => setCurrentImageIndex(idx)}
                       aria-label={`Go to image ${idx + 1}`}
                       className={`h-2 rounded-full transition-all ${
@@ -259,31 +288,36 @@ export default function ProductPage() {
             {/* Action Buttons */}
             <div className="flex gap-3 pt-4">
               <button 
+                type="button"
                 className="flex-1 bg-blue-600 text-white px-8 py-3.5 rounded-lg hover:bg-blue-700 transition-colors font-medium text-base"
                 onClick={() => {
                   if (currentBook.buy_links) {
                     const link = Array.isArray(currentBook.buy_links) 
                       ? currentBook.buy_links[0] 
                       : currentBook.buy_links;
-                    window.open(typeof link === 'object' ? link.url : link, '_blank');
+                    const url = typeof link === 'object' ? link.url : link;
+                    if (url) window.open(url, '_blank', 'noopener,noreferrer');
                   }
                 }}
               >
                 Buy Now
               </button>
               <button 
+                type="button"
                 className="p-3.5 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                 aria-label="Add to wishlist"
               >
                 <Heart size={24} className="text-gray-700" />
               </button>
               <button 
+                type="button"
                 className="p-3.5 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                 aria-label="Add to cart"
               >
                 <ShoppingCart size={24} className="text-gray-700" />
               </button>
               <button 
+                type="button"
                 className="p-3.5 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                 aria-label="Quick view"
               >
