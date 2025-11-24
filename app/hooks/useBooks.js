@@ -5,7 +5,7 @@ export function useBooks(count = 5) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1';
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL
 
   const fetchBooks = useCallback(async () => {
     setLoading(true);

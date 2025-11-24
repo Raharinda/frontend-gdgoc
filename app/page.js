@@ -1,4 +1,4 @@
-import ProductGallery from "./product/components/ProductGallery";
+import ProductGallery from "../components/product/ProductGallery";
 import Breadcrumb from "../components/layout/breadcrumb";
 import BookSection from "../components/home/bookSection"
 
