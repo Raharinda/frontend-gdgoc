@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
-import { useBooks } from '../../app/hooks/useBooks';
+import { useBooks } from '../../hooks/useBooks';
 import ProductTag from './ProductTag';
 import ProductInfo from './ProductInfo';
 import ProductSpecs from './ProductSpecs';
