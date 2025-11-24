@@ -64,7 +64,7 @@ export default function ProductGallery({ singleBook = null }) {
           />
 
           {/* ARROWS */}
-          <>
+          <div>
             <button
               onClick={prev}
               className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm 
@@ -80,7 +80,7 @@ export default function ProductGallery({ singleBook = null }) {
             >
               <ChevronRight size={32} className="text-white" strokeWidth={3} />
             </button>
-          </>
+          </div>
 
         {/* DOTS */}
           {hasMultiple && (
