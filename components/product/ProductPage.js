@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useBooks } from '../../hooks/useBooks';
-import Breadcrumb from '../../components/layout/Breadcrumb';
 import ProductGallery from '../../components/product/ProductGallery';
 import ProductTags from './ProductTag';
 import ProductInfo from '../../components/product/ProductInfo';
@@ -59,7 +58,6 @@ export default function ProductPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Breadcrumb items={breadcrumbItems} />
       
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
