@@ -1,7 +1,7 @@
 import ProductGallery from "../components/product/ProductGallery";
 import Breadcrumb from "../components/layout/breadcrumb";
 import BookSection from "../components/home/bookSection"
-
+import SearchBooks from "../components/search/SearchBooks";
 
 
 export default function Home() {
@@ -19,6 +19,10 @@ export default function Home() {
       <div className="max-w-7xl mx-auto px-6 py-20">
         <BookSection/>
       </div>
+      
+    <div className="max-w-2xl mx-auto">
+      <SearchBooks />
+    </div>
 
     </div>
   );

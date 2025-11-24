@@ -1,5 +1,6 @@
 'use client';
 import Link from "next/link";
+import SearchBooks from "@/components/search/SearchBooks"
 
 import { useState } from 'react';
 // Social Icons
@@ -12,8 +13,10 @@ import { IoSearchOutline, IoPersonOutline, IoMenu, IoClose } from "react-icons/i
 import { FiHeart, FiChevronDown } from "react-icons/fi";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isShopOpen, setIsShopOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isShopOpen, setIsShopOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+
 
   return (
     <div className="bg-white shadow-sm">
@@ -55,7 +58,7 @@ export default function Navbar() {
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between relative">
           {/* Logo */}
           <span className="text-lg sm:text-xl font-semibold">Bookstar</span>
 
@@ -86,14 +89,46 @@ export default function Navbar() {
               <IoPersonOutline size={22} />
               <span className="cursor-pointer hover:text-blue-800 font-semibold">Login / Register</span>
             </div>
-            <div className="cursor-pointer hover:text-blue-800"><IoSearchOutline size={22} /></div>
+            <div className="relative">
+            <div
+                className="cursor-pointer hover:text-blue-800"
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+            >
+                <IoSearchOutline size={22} />
+            </div>
+
+            {isSearchOpen && (
+                <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2
+                                w-64 bg-white shadow-xl rounded-xl p-4 z-50">
+                <SearchBooks />
+                </div>
+            )}
+            </div>
+
             <div className="cursor-pointer hover:text-blue-800"><BsCart2 size={20} /></div>
             <div className="cursor-pointer hover:text-blue-800"><FiHeart size={20} /></div>
           </div>
 
           {/* Mobile Icons + Menu Button */}
           <div className="flex lg:hidden items-center gap-4 text-blue-400">
-            <div className="cursor-pointer hover:text-blue-800"><IoSearchOutline size={20} /></div>
+            <div className="relative">
+            <div
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="cursor-pointer hover:text-blue-800"
+            >
+                <IoSearchOutline size={20} />
+            </div>
+
+            {/* FLOATING SEARCH MOBILE */}
+            {isSearchOpen && (
+                <div className="absolute right-0 top-full mt-2 
+                                w-72 bg-white shadow-xl rounded-xl p-4 z-50">
+                <SearchBooks />
+                </div>
+            )}
+            </div>
+
+
             <div className="cursor-pointer hover:text-blue-800"><BsCart2 size={20} /></div>
             <div className="cursor-pointer hover:text-blue-800"><FiHeart size={20} /></div>
             <button 
@@ -104,6 +139,9 @@ export default function Navbar() {
             </button>
           </div>
         </div>
+
+
+
 
         {/* Mobile Menu */}
         {isMenuOpen && (
@@ -145,6 +183,7 @@ export default function Navbar() {
           </div>
         )}
       </div>
+
     </div>
   );
 }
