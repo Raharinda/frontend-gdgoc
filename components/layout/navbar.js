@@ -72,9 +72,9 @@ export default function Navbar() {
                 <FiChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
               </span>
               <div className="absolute left-0 top-6 hidden group-hover:flex flex-col bg-white shadow-md rounded-md w-40 p-3 gap-2 text-sm z-50">
-                <span className="cursor-pointer hover:text-teal-600">All Products</span>
-                <span className="cursor-pointer hover:text-teal-600">Best Seller</span>
-                <span className="cursor-pointer hover:text-teal-600">Categories</span>
+                <Link href="/shop/all-product" className="cursor-pointer hover:text-teal-600 py-1">All Products</Link>
+                <Link href="/shop/best-seller" className="cursor-pointer hover:text-teal-600 py-1">Best Seller</Link>
+                <Link href="/shop/categories" className="cursor-pointer hover:text-teal-600 py-1">Categories</Link>
               </div>
             </div>
             <Link href="/about" className="cursor-pointer hover:text-teal-600 px-2 py-2">About</Link>
@@ -147,7 +147,7 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="lg:hidden border-t border-gray-200 mt-4 pt-4">
             <div className="flex flex-col space-y-4">
-              <span className="cursor-pointer hover:text-teal-600 px-2 py-2">Home</span>
+              <Link href='/'className="cursor-pointer hover:text-teal-600 px-2 py-2">Home</Link>
               
               {/* Mobile Shop Dropdown */}
               <div>
@@ -160,9 +160,9 @@ export default function Navbar() {
                 </button>
                 {isShopOpen && (
                   <div className="flex flex-col pl-6 mt-2 space-y-2 text-sm">
-                    <span className="cursor-pointer hover:text-teal-600 py-1">All Products</span>
-                    <span className="cursor-pointer hover:text-teal-600 py-1">Best Seller</span>
-                    <span className="cursor-pointer hover:text-teal-600 py-1">Categories</span>
+                    <Link href="/shop/all-product" className="cursor-pointer hover:text-teal-600 py-1">All Products</Link>
+                    <Link href="/shop/best-seller" className="cursor-pointer hover:text-teal-600 py-1">Best Seller</Link>
+                    <Link href="/shop/categories" className="cursor-pointer hover:text-teal-600 py-1">Categories</Link>
                   </div>
                 )}
               </div>

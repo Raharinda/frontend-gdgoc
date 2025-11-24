@@ -20,9 +20,6 @@ export default function Home() {
         <BookSection/>
       </div>
       
-    <div className="max-w-2xl mx-auto">
-    </div>
-
     </div>
   );
 }

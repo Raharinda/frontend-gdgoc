@@ -14,13 +14,11 @@ export default function BookSection() {
   useEffect(() => {
     async function fetchBooks() {
       try {
-        console.log('🔍 API URL:', API_BASE_URL); // Debug
         
         // Fetch 8 buku dengan error handling yang lebih baik
         const promises = Array(8).fill(null).map((_, index) =>
           fetch(`${API_BASE_URL}/random_book`)
             .then(async (response) => {
-              console.log(`📦 Response ${index + 1}:`, response.status);
               
               if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
