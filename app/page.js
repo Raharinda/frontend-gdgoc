@@ -21,7 +21,6 @@ export default function Home() {
       </div>
       
     <div className="max-w-2xl mx-auto">
-      <SearchBooks />
     </div>
 
     </div>
