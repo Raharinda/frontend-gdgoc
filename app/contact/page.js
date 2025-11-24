@@ -1,6 +1,8 @@
 
-export default function page() {
+export default function Contact() {
   return (
-    <div>page</div>
+    <div>
+        <h1>INI CONTACT</h1>
+    </div>
   )
 }

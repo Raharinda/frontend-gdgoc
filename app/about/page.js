@@ -1,6 +1,8 @@
 
-export default function page() {
+export default function About() {
   return (
-    <div>page</div>
+    <div>
+        <h1>INI ABOUT</h1>
+    </div>
   )
 }

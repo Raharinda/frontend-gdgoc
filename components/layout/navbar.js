@@ -1,4 +1,5 @@
 'use client';
+import Link from "next/link";
 
 import { useState } from 'react';
 // Social Icons
@@ -60,10 +61,10 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex justify-evenly gap-6">
-            <span className="cursor-pointer hover:text-teal-600">Home</span>
+            <Link href="/" className="cursor-pointer px-2 py-2 hover:text-teal-600">Home</Link>
             {/* SHOP + DROPDOWN */}
             <div className="relative group">
-              <span className="flex items-center gap-1 cursor-pointer font-medium text-gray-700 group-hover:text-teal-600">
+              <span className="flex items-center gap-1 cursor-pointer font-medium px-2 py-2 text-gray-700 group-hover:text-teal-600">
                 Shop
                 <FiChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
               </span>
@@ -73,10 +74,10 @@ export default function Navbar() {
                 <span className="cursor-pointer hover:text-teal-600">Categories</span>
               </div>
             </div>
-            <span className="cursor-pointer hover:text-teal-600">About</span>
-            <span className="cursor-pointer hover:text-teal-600">Blog</span>
-            <span className="cursor-pointer hover:text-teal-600">Contact</span>
-            <span className="cursor-pointer hover:text-teal-600">Pages</span>
+            <Link href="/about" className="cursor-pointer hover:text-teal-600 px-2 py-2">About</Link>
+            <Link href="/blog" className="cursor-pointer hover:text-teal-600 px-2 py-2">Blog</Link>
+            <Link href="/contact" className="cursor-pointer hover:text-teal-600 px-2 py-2">Contact</Link>
+            <Link href="/info" className="cursor-pointer hover:text-teal-600 px-2 py-2">Pages</Link>
           </div>
 
           {/* Desktop Icons */}
@@ -128,10 +129,11 @@ export default function Navbar() {
                 )}
               </div>
 
-              <span className="cursor-pointer hover:text-teal-600 px-2 py-2">About</span>
-              <span className="cursor-pointer hover:text-teal-600 px-2 py-2">Blog</span>
-              <span className="cursor-pointer hover:text-teal-600 px-2 py-2">Contact</span>
-              <span className="cursor-pointer hover:text-teal-600 px-2 py-2">Pages</span>
+            <Link href="/about" className="cursor-pointer hover:text-teal-600 px-2 py-2">About</Link>
+            <Link href="/blog" className="cursor-pointer hover:text-teal-600 px-2 py-2">Blog</Link>
+            <Link href="/contact" className="cursor-pointer hover:text-teal-600 px-2 py-2">Contact</Link>
+            <Link href="/info" className="cursor-pointer hover:text-teal-600 px-2 py-2">Pages</Link>
+
               
               {/* Mobile Login/Register */}
               <div className="flex items-center gap-3 px-2 py-2 border-t border-gray-200 pt-4 text-blue-400">

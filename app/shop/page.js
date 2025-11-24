@@ -1,6 +1,8 @@
 
-export default function page() {
+export default function Shop() {
   return (
-    <div>page</div>
+    <div>
+        <h1>INI SHOP</h1>
+    </div>
   )
 }

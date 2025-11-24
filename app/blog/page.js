@@ -1,6 +1,8 @@
 
-export default function page() {
+export default function Blog() {
   return (
-    <div>page</div>
+    <div>
+        <h1>INI BLOG</h1>
+    </div>
   )
 }
