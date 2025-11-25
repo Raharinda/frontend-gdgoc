@@ -19,7 +19,6 @@ Aplikasi ini berfokus pada pengalaman pengguna yang modern, cepat, dan responsif
 - [🧰 Tech Stack](#-tech-stack)
 - [📁 Project Structure](#-project-structure)
 - [🖥 Demo](#-demo)
-- [🖼 Screenshots](#-screenshots)
 - [⚙️ Installation](#-installation)
 
 ---
