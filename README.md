@@ -14,49 +14,158 @@ Aplikasi ini berfokus pada pengalaman pengguna yang modern, cepat, dan responsif
 
 ---
 
-## 🚀 Features
-
-### 🔐 Authentication
-- Google Login menggunakan Firebase / OAuth
-- Protected pages
-- Auto-redirect berdasarkan status login
-
-### 📱 Responsive UI
-- Mobile-first design
-- Modern UI dengan Tailwind CSS
-- Interactive components (hover, animation, hamburger menu)
-
-### 🧭 Core Pages
-- Home
-- Shop / Data Listing
-- Detail Page
-- User Dashboard
-- About / Informational Pages
-
-### 🔎 Utility Features
-- Search & Filter
-- Skeleton Loading
-- Error & Empty State UI
-- Toast Notifications
-
-### 🛠 Developer Friendly
-- Reusable components (Button, Navbar, Footer, Card)
-- Folder structure clean & scalable
-- ENV-based configuration
-- API consumption (fetch to backend GDGoC)
+## 📌 Table of Contents
+- [🚀 Features](#-features)
+- [🧰 Tech Stack](#-tech-stack)
+- [📁 Project Structure](#-project-structure)
+- [🖥 Demo](#-demo)
+- [🖼 Screenshots](#-screenshots)
+- [⚙️ Installation](#-installation)
+- [🔧 Environment Variables](#-environment-variables)
+- [📡 API Integration](#-api-integration)
+- [🧪 Testing (Optional)](#-testing-optional)
+- [🧩 Future Improvements](#-future-improvements)
+- [👤 Author](#-author)
 
 ---
 
+
+## 🚀 Features
+
+### 🔐 Authentication
+- Google OAuth Login  
+- Protected Routes  
+- Auto redirect based on session
+
+### 🎨 UI & UX
+- Mobile-first design  
+- Smooth animation  
+- Skeleton loading  
+- Toast feedback system  
+- Reusable UI components
+
+### 🧭 Main Pages
+- Home  
+- Shop / Listing  
+- User Dashboard  
+- Detail Page  
+- About Page  
+- Auth Menu + User Menu
+
+### ⚙️ Extra Features
+- Error handling (network error, empty data)  
+- Global loading indicator  
+- Clean API fetch handler  
+- Optimized images via Next/Image  
+
+---
 ## 🧰 Tech Stack
 
-- **Next.js 14+**
-- **React**
-- **Tailwind CSS**
-- **Firebase Auth (Google Login)**
-- **Lucide / React Icons**
-- **Vercel Deployment**
+| Category | Tech |
+|---------|------|
+| Framework | **Next.js 14+** |
+| Styling | **Tailwind CSS** |
+| Icons | Lucide / React Icons |
+| Auth | Firebase / Google OAuth |
+| Deployment | Vercel |
+| Package Manager | npm |
 
 ---
 
 ## 📁 Project Structure
+.
+├── app
+│   ├── about
+│   │   └── page.js
+│   ├── blog
+│   │   └── page.js
+│   ├── contact
+│   │   └── page.js
+│   ├── hooks
+│   │   └── useBooks.js
+│   ├── info
+│   │   └── page.js
+│   ├── login
+│   │   └── page.js
+│   ├── product
+│   │   └── page.js
+│   ├── shop
+│   │   ├── all-product
+│   │   │   └── page.js
+│   │   ├── best-seller
+│   │   │   └── page.js
+│   │   ├── categories
+│   │   │   └── page.js
+│   │   └── page.js
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.js
+│   └── page.js
+├── components
+│   ├── auth
+│   │   └── AuthButton.js
+│   ├── cards
+│   │   └── bookCard.js
+│   ├── home
+│   │   └── bookSection.js
+│   ├── layout
+│   │   ├── breadcrumb.js
+│   │   └── navbar.js
+│   ├── product
+│   │   ├── ProductAction.js
+│   │   ├── ProductGallery.js
+│   │   ├── ProductInfo.js
+│   │   ├── ProductPage.js
+│   │   ├── ProductSpecs.js
+│   │   ├── ProductSummary.js
+│   │   └── ProductTag.js
+│   └── search
+│       └── SearchBooks.js
+├── public
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── eslint.config.mjs
+├── firebase.js
+├── jsconfig.json
+├── next.config.mjs
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+└── README.md
+
+
+## 🖥 Demo
+
+> frontend-gdgoc.vercel.app
+
+🔗 **Live Demo:** https://frontend-gdgoc.vercel.app  
+📦 **Repository:** https://github.com/raharinda/gdgoc-frontend
+
+---
+
+
+## ⚙️ Installation
+
+### 1️⃣ Clone Project
+```bash
+git clone https://github.com/yourusername/gdgoc-frontend.git
+cd gdgoc-frontend
+```
+###2️⃣ Install Dependencies
+npm install
+# atau
+yarn install
+# atau
+pnpm install
+
+###3️⃣ Run Development Server
+npm run dev
+# lalu
+npm start
+# akses di
+http://localhost:3000
+
 
