@@ -1,36 +1,167 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+# 🌐 GDGoC Frontend Project
 
-## Getting Started
+Frontend web app yang dibangun sebagai bagian dari Study Case Open Recruitment GDGoC. 
+Aplikasi ini berfokus pada pengalaman pengguna yang modern, cepat, dan responsif menggunakan Next.js dan Tailwind CSS.
 
-First, run the development server:
 
+![Status](https://img.shields.io/badge/status-active-brightgreen)
+![Next.js](https://img.shields.io/badge/Next.js-14-black)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-blue)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
+![Vercel](https://img.shields.io/badge/deploy-Vercel-black)
+</div>
+
+---
+
+## 📌 Table of Contents
+- [🚀 Features](#-features)
+- [🧰 Tech Stack](#-tech-stack)
+- [📁 Project Structure](#-project-structure)
+- [🖥 Demo](#-demo)
+- [⚙️ Installation](#-installation)
+
+---
+
+
+## 🚀 Features
+
+### 🔐 Authentication
+- Google OAuth Login  
+- Protected Routes  
+- Auto redirect based on session
+
+### 🎨 UI & UX
+- Mobile-first design  
+- Smooth animation  
+- Skeleton loading  
+- Toast feedback system  
+- Reusable UI components
+
+### 🧭 Main Pages
+- Home  
+- Shop / Listing  
+- User Dashboard  
+- Detail Page  
+- About Page  
+- Auth Menu + User Menu
+
+### ⚙️ Extra Features
+- Error handling (network error, empty data)  
+- Global loading indicator  
+- Clean API fetch handler  
+- Optimized images via Next/Image  
+
+---
+## 🧰 Tech Stack
+
+| Category | Tech |
+|---------|------|
+| Framework | **Next.js 14+** |
+| Styling | **Tailwind CSS** |
+| Icons | Lucide / React Icons |
+| Auth | Firebase / Google OAuth |
+| Deployment | Vercel |
+| Package Manager | npm |
+
+---
+
+## 📁 Project Structure
+.
+├── app
+│   ├── about
+│   │   └── page.js
+│   ├── blog
+│   │   └── page.js
+│   ├── contact
+│   │   └── page.js
+│   ├── hooks
+│   │   └── useBooks.js
+│   ├── info
+│   │   └── page.js
+│   ├── login
+│   │   └── page.js
+│   ├── product
+│   │   └── page.js
+│   ├── shop
+│   │   ├── all-product
+│   │   │   └── page.js
+│   │   ├── best-seller
+│   │   │   └── page.js
+│   │   ├── categories
+│   │   │   └── page.js
+│   │   └── page.js
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.js
+│   └── page.js
+├── components
+│   ├── auth
+│   │   └── AuthButton.js
+│   ├── cards
+│   │   └── bookCard.js
+│   ├── home
+│   │   └── bookSection.js
+│   ├── layout
+│   │   ├── breadcrumb.js
+│   │   └── navbar.js
+│   ├── product
+│   │   ├── ProductAction.js
+│   │   ├── ProductGallery.js
+│   │   ├── ProductInfo.js
+│   │   ├── ProductPage.js
+│   │   ├── ProductSpecs.js
+│   │   ├── ProductSummary.js
+│   │   └── ProductTag.js
+│   └── search
+│       └── SearchBooks.js
+├── public
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── eslint.config.mjs
+├── firebase.js
+├── jsconfig.json
+├── next.config.mjs
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── README.md
+└── tree.txt
+
+21 directories, 42 files
+
+
+## 🖥 Demo
+
+> frontend-gdgoc.vercel.app
+
+🔗 **Live Demo:** https://frontend-gdgoc.vercel.app  
+📦 **Repository:** https://github.com/raharinda/gdgoc-frontend
+
+---
+
+
+## ⚙️ Installation
+
+### 1️⃣ Clone Project
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/gdgoc-frontend.git
+cd gdgoc-frontend
 ```
+### 2️⃣ Install Dependencies
+npm install
+# atau
+yarn install
+# atau
+pnpm install
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3️⃣ Run Development Server
+npm run dev
+npm start
+# akses
+http://localhost:3000
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
