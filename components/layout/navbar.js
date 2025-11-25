@@ -193,7 +193,7 @@ export default function Navbar() {
               {/* Mobile Login/Register */}
               <div className="flex items-center gap-3 px-2 py-2 border-t border-gray-200 pt-4 text-blue-400">
                 <IoPersonOutline size={22} />
-                <span className="cursor-pointer hover:text-blue-800 font-semibold">Login / Register</span>
+                <AuthButton />
               </div>
               
             </div>
