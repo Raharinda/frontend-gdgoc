@@ -47,10 +47,21 @@ export default function Navbar() {
           <div className="flex items-center gap-2 sm:gap-4 text-base sm:text-lg">
             <span className="text-xs sm:text-sm hidden sm:inline">Follow Us :</span>
             <div className="flex gap-2 sm:gap-3 text-white items-center">
-              <SiInstagram className="w-4 h-4 sm:w-5 sm:h-5" />
-              <FaYoutube className="w-4 h-4 sm:w-5 sm:h-5" />
-              <FaFacebook className="w-4 h-4 sm:w-5 sm:h-5" />
-              <FaTwitter className="w-4 h-4 sm:w-5 sm:h-5" />
+                <a href="https://instagram.com" target="_blank">
+                  <SiInstagram className="w-4 h-4 sm:w-5 sm:h-5" />
+                </a>
+
+                <a href="https://youtube.com" target="_blank">
+                  <FaYoutube className="w-4 h-4 sm:w-5 sm:h-5" />
+                </a>
+
+                <a href="https://facebook.com" target="_blank">
+                  <FaFacebook className="w-4 h-4 sm:w-5 sm:h-5" />
+                </a>
+
+                <a href="https://twitter.com" target="_blank">
+                  <FaTwitter className="w-4 h-4 sm:w-5 sm:h-5" />
+              </a>
             </div>
           </div>
         </div>
@@ -71,7 +82,7 @@ export default function Navbar() {
                 Shop
                 <FiChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
               </span>
-              <div className="absolute left-0 top-6 hidden group-hover:flex flex-col bg-white shadow-md rounded-md w-40 p-3 gap-2 text-sm z-50">
+              <div className="absolute left-0 top-7 hidden group-hover:flex flex-col bg-white shadow-md rounded-md w-40 p-3 gap-2 text-sm z-50">
                 <Link href="/shop/all-product" className="cursor-pointer hover:text-teal-600 py-1">All Products</Link>
                 <Link href="/shop/best-seller" className="cursor-pointer hover:text-teal-600 py-1">Best Seller</Link>
                 <Link href="/shop/categories" className="cursor-pointer hover:text-teal-600 py-1">Categories</Link>

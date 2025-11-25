@@ -1,6 +1,6 @@
 'use client';
 
-import { Heart, ShoppingCart, Eye, ExternalLink } from 'lucide-react';
+import { Heart, ShoppingCart, Eye } from 'lucide-react';
 
 export default function ProductAction({ 
   book = {},
@@ -15,33 +15,32 @@ export default function ProductAction({
   };
 
   return (
-    <div className="flex gap-3 pt-4">
+    <div className="flex gap-2 pt-4">
       <button 
         onClick={handleBuyNow}
-        className="flex-1 px-8 py-3.5 rounded-lg transition-colors font-medium text-base flex items-center justify-center gap-2 bg-blue-600 text-white hover:bg-blue-700 cursor-pointer"
+        className=" py-1 px-8 font-semibold rounded-xl transition-colors text-base flex items-center justify-center gap-2 bg-blue-600 text-white hover:bg-blue-700 cursor-pointer"
       >
         Buy Now
-        <ExternalLink size={18} />
       </button>
 
       
       <button 
         onClick={onAddToWishlist}
-        className="p-3.5 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+        className="p-3.5 bg-blue-100 rounded-4xl hover:bg-blue-200 transition-colors"
       >
         <Heart size={24} className="text-gray-700" />
       </button>
       
       <button 
         onClick={onAddToCart}
-        className="p-3.5 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+        className="p-3.5 bg-blue-100 rounded-4xl hover:bg-blue-200 transition-colors"
       >
         <ShoppingCart size={24} className="text-gray-700" />
       </button>
       
       <button 
         onClick={onQuickView}
-        className="p-3.5 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+        className="p-3.5 bg-blue-100 rounded-4xl hover:bg-blue-200 transition-colors"
       >
         <Eye size={24} className="text-gray-700" />
       </button>
