@@ -1,6 +1,10 @@
 'use client';
 import Link from "next/link";
 import SearchBooks from "@/components/search/SearchBooks"
+import AuthButton from "@/components/auth/AuthButton";
+
+
+
 
 import { useState } from 'react';
 // Social Icons
@@ -16,6 +20,8 @@ export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isShopOpen, setIsShopOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [openAuth, setOpenAuth] = useState(false);
+
 
 
   return (
@@ -96,10 +102,12 @@ export default function Navbar() {
 
           {/* Desktop Icons */}
           <div className="hidden lg:flex justify-between text-blue-400 gap-10">
-            <div className="flex gap-3">
-              <IoPersonOutline size={22} />
-              <span className="cursor-pointer hover:text-blue-800 font-semibold">Login / Register</span>
+            <div className="flex gap-3 text-blue-400">
+              <IoPersonOutline size={22}/>
+              <AuthButton />
             </div>
+
+
             <div className="relative">
             <div
                 className="cursor-pointer hover:text-blue-800"
