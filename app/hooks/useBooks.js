@@ -30,7 +30,7 @@ export function useBooks(count = 5) {
 
       const data = await Promise.all(promises);
       
-      // Add unique key untuk setiap buku
+      // Add unique key
       const booksWithKeys = data.map((book, index) => ({
         ...book,
         _uniqueKey: `${book._id}-${index}-${Date.now()}`

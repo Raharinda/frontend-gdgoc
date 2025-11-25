@@ -25,7 +25,6 @@ export default function RootLayout({ children }) {
         <header className="sticky top-0 z-50">
         <Navbar />
         </header>
-        <Breadcumb />
         {children}
 
       </body>

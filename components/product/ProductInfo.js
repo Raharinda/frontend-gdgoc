@@ -9,7 +9,7 @@ export default function ProductInfo({ book = {} }) {
         {book.title || 'Beyond the Stars'}
       </h1>
 
-     {/* HARGA — ambil dari details.price */}
+     {/* HARGA*/}
       <p className="text-3xl font-semibold text-gray-900">
         {d.price || "Rp -"}
       </p>

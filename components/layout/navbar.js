@@ -99,7 +99,7 @@ export default function Navbar() {
 
             {isSearchOpen && (
                 <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2
-                                w-64 bg-white shadow-xl rounded-xl p-4 z-50">
+                w-64 bg-white shadow-xl rounded-xl p-4 z-50">
                 <SearchBooks />
                 </div>
             )}
@@ -122,7 +122,7 @@ export default function Navbar() {
             {/* FLOATING SEARCH MOBILE */}
             {isSearchOpen && (
                 <div className="absolute right-0 top-full mt-2 
-                                w-72 bg-white shadow-xl rounded-xl p-4 z-50">
+                w-72 bg-white shadow-xl rounded-xl p-4 z-50">
                 <SearchBooks />
                 </div>
             )}
@@ -139,8 +139,6 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-
-
 
 
         {/* Mobile Menu */}
