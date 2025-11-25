@@ -68,6 +68,7 @@ Aplikasi ini berfokus pada pengalaman pengguna yang modern, cepat, dan responsif
 
 ## 📁 Project Structure
 
+```txt
 frontend-gdgoc/
 ├─ app/
 │  ├─ about/
@@ -132,7 +133,7 @@ frontend-gdgoc/
 ├─ eslint.config.mjs
 ├─ postcss.config.mjs
 └─ README.md
-
+```
 
 
 ## 🖥 Demo
