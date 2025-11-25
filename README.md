@@ -21,11 +21,6 @@ Aplikasi ini berfokus pada pengalaman pengguna yang modern, cepat, dan responsif
 - [🖥 Demo](#-demo)
 - [🖼 Screenshots](#-screenshots)
 - [⚙️ Installation](#-installation)
-- [🔧 Environment Variables](#-environment-variables)
-- [📡 API Integration](#-api-integration)
-- [🧪 Testing (Optional)](#-testing-optional)
-- [🧩 Future Improvements](#-future-improvements)
-- [👤 Author](#-author)
 
 ---
 
@@ -134,7 +129,10 @@ Aplikasi ini berfokus pada pengalaman pengguna yang modern, cepat, dan responsif
 ├── package.json
 ├── package-lock.json
 ├── postcss.config.mjs
-└── README.md
+├── README.md
+└── tree.txt
+
+21 directories, 42 files
 
 
 ## 🖥 Demo
@@ -154,18 +152,17 @@ Aplikasi ini berfokus pada pengalaman pengguna yang modern, cepat, dan responsif
 git clone https://github.com/yourusername/gdgoc-frontend.git
 cd gdgoc-frontend
 ```
-###2️⃣ Install Dependencies
+### 2️⃣ Install Dependencies
 npm install
 # atau
 yarn install
 # atau
 pnpm install
 
-###3️⃣ Run Development Server
+### 3️⃣ Run Development Server
 npm run dev
-# lalu
 npm start
-# akses di
+# akses
 http://localhost:3000
 
 
