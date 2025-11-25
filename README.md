@@ -67,71 +67,72 @@ Aplikasi ini berfokus pada pengalaman pengguna yang modern, cepat, dan responsif
 ---
 
 ## 📁 Project Structure
-.
-├── app
-│   ├── about
-│   │   └── page.js
-│   ├── blog
-│   │   └── page.js
-│   ├── contact
-│   │   └── page.js
-│   ├── hooks
-│   │   └── useBooks.js
-│   ├── info
-│   │   └── page.js
-│   ├── login
-│   │   └── page.js
-│   ├── product
-│   │   └── page.js
-│   ├── shop
-│   │   ├── all-product
-│   │   │   └── page.js
-│   │   ├── best-seller
-│   │   │   └── page.js
-│   │   ├── categories
-│   │   │   └── page.js
-│   │   └── page.js
-│   ├── favicon.ico
-│   ├── globals.css
-│   ├── layout.js
-│   └── page.js
-├── components
-│   ├── auth
-│   │   └── AuthButton.js
-│   ├── cards
-│   │   └── bookCard.js
-│   ├── home
-│   │   └── bookSection.js
-│   ├── layout
-│   │   ├── breadcrumb.js
-│   │   └── navbar.js
-│   ├── product
-│   │   ├── ProductAction.js
-│   │   ├── ProductGallery.js
-│   │   ├── ProductInfo.js
-│   │   ├── ProductPage.js
-│   │   ├── ProductSpecs.js
-│   │   ├── ProductSummary.js
-│   │   └── ProductTag.js
-│   └── search
-│       └── SearchBooks.js
-├── public
-│   ├── file.svg
-│   ├── globe.svg
-│   ├── next.svg
-│   ├── vercel.svg
-│   └── window.svg
-├── eslint.config.mjs
-├── firebase.js
-├── jsconfig.json
-├── next.config.mjs
-├── package.json
-├── package-lock.json
-├── postcss.config.mjs
-├── README.md
-└── tree.txt
 
-21 directories, 42 files
+frontend-gdgoc/
+├─ app/
+│  ├─ about/
+│  │  └─ page.js
+│  ├─ blog/
+│  │  └─ page.js
+│  ├─ contact/
+│  │  └─ page.js
+│  ├─ hooks/
+│  │  └─ useBooks.js
+│  ├─ info/
+│  │  └─ page.js
+│  ├─ login/
+│  │  └─ page.js
+│  ├─ product/
+│  │  └─ page.js
+│  └─ shop/
+│     ├─ all-product/
+│     │  └─ page.js
+│     ├─ best-seller/
+│     │  └─ page.js
+│     └─ categories/
+│        └─ page.js
+│
+├─ globals.css
+├─ layout.js
+├─ page.js
+│
+├─ components/
+│  ├─ auth/
+│  │  └─ AuthButton.js
+│  ├─ cards/
+│  │  └─ bookCard.js
+│  ├─ home/
+│  │  └─ bookSection.js
+│  ├─ layout/
+│  │  ├─ breadcrumb.js
+│  │  └─ navbar.js
+│  ├─ product/
+│  │  ├─ ProductAction.js
+│  │  ├─ ProductGallery.js
+│  │  ├─ ProductInfo.js
+│  │  ├─ ProductPage.js
+│  │  ├─ ProductSpecs.js
+│  │  ├─ ProductSummary.js
+│  │  └─ ProductTag.js
+│  └─ search/
+│     └─ SearchBooks.js
+│
+├─ public/
+│  ├─ file.svg
+│  ├─ globe.svg
+│  ├─ next.svg
+│  ├─ vercel.svg
+│  └─ window.svg
+│
+├─ firebase.js
+├─ jsconfig.json
+├─ next.config.mjs
+├─ package.json
+├─ package-lock.json
+├─ eslint.config.mjs
+├─ postcss.config.mjs
+└─ README.md
+
 
 
 ## 🖥 Demo
