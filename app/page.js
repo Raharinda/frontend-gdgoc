@@ -1,7 +1,6 @@
 import ProductGallery from "../components/product/ProductGallery";
 import Breadcrumb from "../components/layout/breadcrumb";
 import BookSection from "../components/home/bookSection"
-import SearchBooks from "../components/search/SearchBooks";
 
 
 export default function Home() {

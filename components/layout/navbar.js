@@ -3,9 +3,6 @@ import Link from "next/link";
 import SearchBooks from "@/components/search/SearchBooks"
 import AuthButton from "@/components/auth/AuthButton";
 
-
-
-
 import { useState } from 'react';
 // Social Icons
 import { SiInstagram } from "react-icons/si";

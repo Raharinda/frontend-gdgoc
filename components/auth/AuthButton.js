@@ -4,6 +4,7 @@ import { useState } from "react";
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "@/firebase";
 import { IoClose } from "react-icons/io5";
+import Image from "next/image"
 
 export default function AuthButton() {
   const [open, setOpen] = useState(false);
@@ -11,7 +12,7 @@ export default function AuthButton() {
   const loginGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      setOpen(false); // tutup modal setelah login
+      setOpen(false);
     } catch (e) {
       console.error(e);
     }
@@ -19,7 +20,7 @@ export default function AuthButton() {
 
   return (
     <>
-      {/* Trigger button (yang dipanggil di Navbar) */}
+      {/* Trigger button */}
       <div
         className="flex items-center gap-2 cursor-pointer hover:text-blue-700 select-none"
         onClick={() => setOpen(true)}
@@ -60,7 +61,7 @@ export default function AuthButton() {
                 active:scale-[0.98]
               "
             >
-              <img
+              <Image
                 src='https://www.svgrepo.com/show/475656/google-color.svg'
                 alt="google"
                 className="w-6 h-6"

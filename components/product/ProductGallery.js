@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useBooks } from "@/app/hooks/useBooks";
 import ProductTag from "./ProductTag";
 import ProductInfo from "./ProductInfo";
