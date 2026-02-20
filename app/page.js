@@ -1,12 +1,11 @@
 import ProductGallery from "../components/product/ProductGallery";
 import Breadcrumb from "../components/layout/breadcrumb";
-import BookSection from "../components/home/bookSection"
-
+import BookSection from "./(public)/recomendation/bookSection";
 
 export default function Home() {
-  const breadcrumbItems = [ 
-    { label: 'Home', href: '/', active: true },
-    { label: 'Shop', active: false }
+  const breadcrumbItems = [
+    { label: "Home", href: "/", active: true },
+    { label: "Shop", active: false },
   ];
 
   return (
@@ -16,9 +15,8 @@ export default function Home() {
         <ProductGallery />
       </div>
       <div className="max-w-7xl mx-auto px-6 py-20">
-        <BookSection/>
+        <BookSection />
       </div>
-      
     </div>
   );
 }

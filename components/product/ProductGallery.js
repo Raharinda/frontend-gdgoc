@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useBooks } from "@/app/hooks/useBooks";
+import { useBooks } from "@/hooks/useBooks";
 import ProductTag from "./ProductTag";
 import ProductInfo from "./ProductInfo";
 import ProductSpecs from "./ProductSpecs";
@@ -11,7 +11,7 @@ import ProductAction from "./ProductAction";
 import ProductSummary from "./ProductSummary";
 
 export default function ProductGallery({ singleBook = null }) {
-  const { books} = useBooks(5);
+  const { books } = useBooks(5);
 
   const displayBooks = singleBook ? [singleBook] : books || [];
 
@@ -29,8 +29,7 @@ export default function ProductGallery({ singleBook = null }) {
     return () => clearInterval(intervalRef.current);
   }, [isPaused, displayBooks.length]);
 
-  const next = () =>
-    setCurrentIndex((i) => (i + 1) % displayBooks.length);
+  const next = () => setCurrentIndex((i) => (i + 1) % displayBooks.length);
 
   const prev = () =>
     setCurrentIndex((i) => (i - 1 + displayBooks.length) % displayBooks.length);
@@ -82,7 +81,7 @@ export default function ProductGallery({ singleBook = null }) {
             </button>
           </div>
 
-        {/* DOTS */}
+          {/* DOTS */}
           {hasMultiple && (
             <div className="absolute bottom-6 right-6 flex gap-2 z-10">
               {carouselImages.map((_, idx) => {
@@ -105,10 +104,13 @@ export default function ProductGallery({ singleBook = null }) {
       <div className="space-y-6 p-5 min-h-[700px] max-h-[800px] overflow-y-auto pr-2">
         {currentBook && (
           <>
-            <ProductTag 
-              tags={Array.isArray(currentBook.tags)
-                ? currentBook.tags.map(t => typeof t === "string" ? t : t.name)
-                : []
+            <ProductTag
+              tags={
+                Array.isArray(currentBook.tags)
+                  ? currentBook.tags.map((t) =>
+                      typeof t === "string" ? t : t.name,
+                    )
+                  : []
               }
             />
             <ProductInfo book={currentBook} />
