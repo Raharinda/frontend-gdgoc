@@ -164,6 +164,6 @@ pnpm install
 npm run dev
 npm start
 # akses
-http://localhost:3000
+(https://frontend-gdgoc.vercel.app/)
 
 
